@@ -10,6 +10,7 @@ const resolve = (...args) => path.resolve(__dirname, ...args);
 const extensions = ['.js', '.ts'];
 
 module.exports = {
+  external: ['rxjs'],
   input: resolve('./src/index.ts'),
   output: [
     { file: resolve(pkg.module), format: 'es', sourcemap: true },
