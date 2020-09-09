@@ -7,6 +7,12 @@
   "author": "t7yang <t7yang@gmail.com>",
   "license": "MIT",
   "sideEffect": false,
+  "keywords": [
+    "rxlize",
+    "rxjs",
+    "angular",
+    "state"
+  ],
   "homepage": "https://github.com/t7yang/rxlize",
   "repository": {
     "type": "git",
