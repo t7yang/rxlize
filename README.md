@@ -12,13 +12,11 @@ npm install rxlize
 yarn add rxlize
 ```
 
-This is a preview version, functions in this library not yet cover by test, so take your own risk.
-
 ## Usage
 
 ### With NPM
 
-Just install and import.
+Install Rxlize then import and don't forget to install peer dependency(ies).
 
 ### In browser
 
@@ -38,3 +36,7 @@ Make sure to load `rxjs` global before loading `rxlize.min.js`.
 
 - Angular
   - `rxNgLifecycle` - Transform Angular component lifecycle event to observable stream.
+
+## Cautions
+
+This is a preview version, functions in this library not yet cover by test and signature may change from time to time, so take your own risk to use.
