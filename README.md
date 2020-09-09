@@ -14,13 +14,25 @@ yarn add rxlize
 
 This is a preview version, functions in this library not yet cover by test, so take your own risk.
 
+## Usage
+
+### With NPM
+
+Just install and import.
+
+### In browser
+
+Make sure to load `rxjs` global before loading `rxlize.min.js`.
+
 ## List of function
 
 - State
+
   - `rxStore` -- Create a simple store that can dispatch action to update.
   - `rxToggle` -- Create a boolean state that provide `on`, `off`, `toggle`, `next` to change the state.
 
 - Side Effect
+
   - `rxAsync` -- Handle an async process and provide loading state and error stream.
   - `rxNext` -- Special case of `rxAsync` which provide a default `Subject`.
 
