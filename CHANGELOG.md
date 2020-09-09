@@ -2,6 +2,16 @@
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [0.0.3] - 2020-09-10
+
+### Fixed
+
+- The data property of RxlAsyncState in rxStore should not be optional
+
+### Changed
+
+- Add cautions section in readme.
+
 ## [0.0.2] - 2020-09-09
 
 ### Fixed
