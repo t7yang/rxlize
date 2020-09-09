@@ -2,7 +2,13 @@
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
-## [0.0.3] - 2020-09-10
+## [0.0.4] - 2020-09-10
+
+### Fixed
+
+- Add output.globals for iife build in rollup config.
+
+## [0.0.3] - 2020-09-10 (UNPUBLISH)
 
 ### Fixed
 
