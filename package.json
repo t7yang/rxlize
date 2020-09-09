@@ -1,0 +1,67 @@
+{
+  "name": "rxlize",
+  "version": "0.0.1",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/types/index.d.ts",
+  "author": "t7yang <t7yang@gmail.com>",
+  "license": "MIT",
+  "sideEffect": false,
+  "homepage": "https://github.com/t7yang/rxlize",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/t7yang/rxlize"
+  },
+  "bugs": {
+    "url": "https://github.com/t7yang/rxlize/issues"
+  },
+  "scripts": {
+    "update": "yarn upgrade-interactive",
+    "lint": "eslint src/** --ext .ts --fix",
+    "format": "prettier --write . --ignore-unknown",
+    "clear": "rm -fr ./dist",
+    "test:tsc": "tsc --noEmit --incremental false",
+    "build:type": "tsc --emitDeclarationOnly",
+    "build": "yarn clear && rollup -c && yarn build:type"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{ts}": "yarn lint",
+    "*": "yarn format"
+  },
+  "files": [
+    "dist/*",
+    "!*.tsbuildinfo"
+  ],
+  "peerDependencies": {
+    "@angular/core": ">2.0.0"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.11.2",
+    "@babel/runtime-corejs3": "^7.11.2",
+    "rxjs": "^6.6.2"
+  },
+  "devDependencies": {
+    "@angular/core": "^10.1.0",
+    "@babel/core": "^7.11.6",
+    "@babel/plugin-transform-runtime": "^7.11.5",
+    "@babel/preset-env": "^7.11.5",
+    "@babel/preset-typescript": "^7.10.4",
+    "@rollup/plugin-babel": "^5.2.0",
+    "@rollup/plugin-commonjs": "^15.0.0",
+    "@rollup/plugin-node-resolve": "^9.0.0",
+    "@typescript-eslint/eslint-plugin": "^4.1.0",
+    "@typescript-eslint/parser": "^4.1.0",
+    "eslint": "^7.8.1",
+    "husky": "^4.3.0",
+    "lint-staged": "^10.3.0",
+    "prettier": "^2.1.1",
+    "rollup": "^2.26.11",
+    "rollup-plugin-terser": "^7.0.2",
+    "typescript": "^4.0.2"
+  }
+}
