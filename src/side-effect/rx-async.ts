@@ -8,7 +8,7 @@ export function rxAsync<S, R>(
   factory: RxlFactory<[S, number], R>,
 
   opt: RxlInit<R> = {},
-): { state$: Observable<RxlAsyncState<R>>; error$: Subject<unknown> } {
+): { state$: Observable<RxlAsyncState<R | undefined>>; error$: Subject<unknown> } {
   const cache: RxlCache<R> = { data: opt.init };
   const source$ = from(source);
   const error$ = genErrorSubject();

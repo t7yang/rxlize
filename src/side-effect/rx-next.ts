@@ -7,7 +7,7 @@ export function rxNext<S, R, T extends Subject<S> = Subject<S>>(
   factory: RxlFactory<[S, number], R>,
   opt: RxlInit<R> & RxlSource<S, T> = {},
 ): {
-  state$: Observable<RxlAsyncState<R>>;
+  state$: Observable<RxlAsyncState<R | undefined>>;
   error$: Subject<unknown>;
   source$: T;
 } {

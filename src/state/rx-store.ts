@@ -8,7 +8,7 @@ export function rxStore<S, D extends Dispatcher<S, D>>(
   factory: RxlFactory<[], S>,
   dispatcher: D,
   opt: Required<RxlInit<S>>,
-): { store$: Observable<Required<RxlAsyncState<S>>>; dispatch: Dispatch<S, D>; start: VoidFn<[]>; reset: VoidFn<[]> } {
+): { store$: Observable<RxlAsyncState<S>>; dispatch: Dispatch<S, D>; start: VoidFn<[]>; reset: VoidFn<[]> } {
   let isInitial = false;
   const store$ = new BehaviorSubject({ isLoading: false, error: null, data: opt.init });
   const source$ = from(factory());
