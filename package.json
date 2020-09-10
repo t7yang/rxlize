@@ -1,6 +1,6 @@
 {
   "name": "rxlize",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "browser": "dist/browser/rxlize.js",

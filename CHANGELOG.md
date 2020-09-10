@@ -2,15 +2,17 @@
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
-## [0.0.5] - 2020-09-10
+## [0.0.6] - 2020-09-10
 ### Fixed
-- `RxlAsyncState.data` is not longer optional in `rxStore`.
-- 
-## [0.0.4] - 2020-09-10
+- The build config for babel and rollup are now setup correctly, bundle files are working fine in module and browswer.
+- Unpublish 0.0.3 to 0.0.5, due build configs are not setup properly.
+
+## [0.0.5] - 2020-09-10 (UNPUBLISH)
 ### Fixed
 - Add output.globals for iife build in rollup config.
+- `RxlAsyncState.data` is not longer optional in `rxStore`.
 
-## [0.0.4] - 2020-09-10
+## [0.0.4] - 2020-09-10 (UNPUBLISH)
 ### Fixed
 - Add output.globals for iife build in rollup config.
 
