@@ -3,9 +3,9 @@
 
 
 "@angular/core@^10.1.0":
-  version "10.1.0"
-  resolved "https://registry.yarnpkg.com/@angular/core/-/core-10.1.0.tgz#000b78432be63247199d0f385c116b7f4db803bc"
-  integrity sha512-lENt8Wk1vVsIiHeZVzXCZoHY13BxkqmulEw/AdUOh4VQxoU5K3z1o7fC1cvPHBvBEUnhbD2pDC1UHcY1G9yLRw==
+  version "10.1.1"
+  resolved "https://registry.yarnpkg.com/@angular/core/-/core-10.1.1.tgz#833fbfc303419e9e635ed7fe4cb21f3bc76b708e"
+  integrity sha512-3mvsaZJPg5Z8sGBT0OW3ak0T/UmHmlQ0nkWjwnIdPrMbyv5GoAjTR3Zh3cRK57nGV7ScLk4m4B4INzAjoCDqeA==
   dependencies:
     tslib "^2.0.0"
 
@@ -915,9 +915,9 @@
     fastq "^1.6.0"
 
 "@rollup/plugin-babel@^5.2.0":
-  version "5.2.0"
-  resolved "https://registry.yarnpkg.com/@rollup/plugin-babel/-/plugin-babel-5.2.0.tgz#b87556d61ed108b4eaf9d18b5323965adf8d9bee"
-  integrity sha512-CPABsajaKjINgBQ3it+yMnfVO3ibsrMBxRzbUOUw2cL1hsZJ7aogU8mgglQm3S2hHJgjnAmxPz0Rq7DVdmHsTw==
+  version "5.2.1"
+  resolved "https://registry.yarnpkg.com/@rollup/plugin-babel/-/plugin-babel-5.2.1.tgz#20fc8f8864dc0eaa1c5578408459606808f72924"
+  integrity sha512-Jd7oqFR2dzZJ3NWANDyBjwTtX/lYbZpVcmkHrfQcpvawHs9E4c0nYk5U2mfZ6I/DZcIvy506KZJi54XK/jxH7A==
   dependencies:
     "@babel/helper-module-imports" "^7.10.4"
     "@rollup/pluginutils" "^3.1.0"
@@ -2353,6 +2353,11 @@ rimraf@2.6.3:
   integrity sha512-mwqeW5XsA2qAejG46gYdENaxXjx9onRNCfn7L0duuP4hCuTIi/QO7PDK07KJfp1d+izWPrzEJDcSqBa0OZQriA==
   dependencies:
     glob "^7.1.3"
+
+rollup-plugin-exclude-dependencies-from-bundle@^1.1.12:
+  version "1.1.12"
+  resolved "https://registry.yarnpkg.com/rollup-plugin-exclude-dependencies-from-bundle/-/rollup-plugin-exclude-dependencies-from-bundle-1.1.12.tgz#a8e5048c26b2ab1de74229a3eab6a9cb8b0c5707"
+  integrity sha512-vh6aJp+DlgD7CYrZmlVL+ieHTeIXzusS65/6g86RT6/LBjXLmO+QxIwAihWwcwR8d5Tmv6wrK5jgN0FqTV24qg==
 
 rollup-plugin-terser@^7.0.2:
   version "7.0.2"

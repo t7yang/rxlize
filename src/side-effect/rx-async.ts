@@ -6,7 +6,6 @@ import { genErrorSubject, genLoadingState, handleUpdate } from '../util';
 export function rxAsync<S, R>(
   source: ObservableInput<S>,
   factory: RxlFactory<[S, number], R>,
-
   opt: RxlInit<R> = {},
 ): { state$: Observable<RxlAsyncState<R | undefined>>; error$: Subject<unknown> } {
   const cache: RxlCache<R> = { data: opt.init };
