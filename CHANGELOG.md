@@ -2,6 +2,13 @@
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [0.1.0] - 2020-09-13
+### Changed
+- `rxAsync` and `rxNext` receive a observable operator function instead of RxlFactory function at second argument.
+
+### Fixed
+- `rxStore` now create a new observable in reset instead of use the same one.
+
 ## [0.0.6] - 2020-09-10
 ### Fixed
 - The build config for babel and rollup are now setup correctly, bundle files are working fine in module and browswer.
