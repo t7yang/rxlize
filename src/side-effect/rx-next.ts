@@ -1,10 +1,10 @@
-import { merge, Observable, Subject } from 'rxjs';
-import { map, startWith, switchMap } from 'rxjs/operators';
-import { RxlAsyncState, RxlCache, RxlFactory, RxlInit, RxlSource } from '../types';
+import { merge, Observable, OperatorFunction, Subject } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
+import { RxlAsyncState, RxlCache, RxlInit, RxlSource } from '../types';
 import { genLoadingState, handleUpdate } from '../util';
 
 export function rxNext<S, R, T extends Subject<S> = Subject<S>>(
-  factory: RxlFactory<[S, number], R>,
+  operator: OperatorFunction<S, R>,
   opt: RxlInit<R> & RxlSource<S, T> = {},
 ): {
   state$: Observable<RxlAsyncState<R | undefined>>;
@@ -17,7 +17,7 @@ export function rxNext<S, R, T extends Subject<S> = Subject<S>>(
 
   const state$ = merge(
     source$.pipe(map(genLoadingState(cache))),
-    source$.pipe(switchMap(factory), handleUpdate(cache, error$)),
+    source$.pipe(operator, handleUpdate(cache, error$)),
   ).pipe(startWith({ isLoading: false, error: null, data: cache.data }));
 
   return { state$, error$, source$ };
