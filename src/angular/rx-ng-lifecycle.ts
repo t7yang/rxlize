@@ -8,6 +8,7 @@ import {
   OnDestroy,
   OnInit,
   SimpleChanges,
+  Type,
 } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 
@@ -28,7 +29,7 @@ type LifecycleObservable = Record<LifecycleEventWithoutParams, Observable<void>>
   Record<LifecycleEventWithParams, Observable<SimpleChanges>>;
 
 export const rxNgLifecycle = <T extends LifecycleEvent>(
-  comp: Record<string, any>,
+  comp: InstanceType<Type<any>>,
   ...events: T[]
 ): Readonly<Pick<LifecycleObservable, T>> => {
   const LifeObs = {} as any;
