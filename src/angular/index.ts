@@ -1,1 +1,1 @@
-export * from './rx-ng-lifecycle';
+export * from './hooks';
