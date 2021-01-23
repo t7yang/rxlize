@@ -12,7 +12,7 @@ import {
 } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 
-type LifecycleEventWithoutParams =
+type NgHooksWithoutParams =
   | keyof OnInit
   | keyof DoCheck
   | keyof AfterContentInit
@@ -21,29 +21,30 @@ type LifecycleEventWithoutParams =
   | keyof AfterViewChecked
   | keyof OnDestroy;
 
-type LifecycleEventWithParams = keyof OnChanges;
+type NgHooksWithParams = keyof OnChanges;
 
-type LifecycleEvent = LifecycleEventWithoutParams | LifecycleEventWithParams;
+type NgHooks = NgHooksWithoutParams | NgHooksWithParams;
 
-type LifecycleObservable = Record<LifecycleEventWithoutParams, Observable<void>> &
-  Record<LifecycleEventWithParams, Observable<SimpleChanges>>;
+type NgHooksObservable = Record<NgHooksWithoutParams, Observable<void>> &
+  Record<NgHooksWithParams, Observable<SimpleChanges>>;
 
-export const rxNgLifecycle = <T extends LifecycleEvent>(
+export const rxNgHooks = <T extends NgHooks>(
   comp: InstanceType<Type<any>>,
-  ...events: T[]
-): Readonly<Pick<LifecycleObservable, T>> => {
-  const LifeObs = {} as any;
+  ...hooks: T[]
+): Readonly<Pick<NgHooksObservable, T>> => {
+  const HooksObs = {} as any;
 
-  for (const event of events) {
-    if (!LifeObs[event]) {
-      LifeObs[event] = new Subject<unknown>();
-      const oldHookMethod = comp.constructor.prototype[event];
-      comp.constructor.prototype[event] = function (...args: any[]) {
-        oldHookMethod?.(...args);
-        LifeObs[event].next(...args);
+  for (const hook of hooks) {
+    if (!HooksObs[hook]) {
+      const origHook = comp.constructor.prototype[hook];
+
+      HooksObs[hook] = new Subject<unknown>();
+      comp.constructor.prototype[hook] = function (...args: any[]) {
+        origHook?.(...args);
+        HooksObs[hook].next(...args);
       };
     }
   }
 
-  return LifeObs;
+  return Object.freeze(HooksObs);
 };
