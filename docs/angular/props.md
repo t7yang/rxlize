@@ -13,16 +13,16 @@ import { RxNgProp, rxNgProps, RxNgProps } from 'rxlize';
 @Component({...})
 export class CardComponent {
   // the `props` property decorate by @RxNgProps MUST declare before all @RxNgProp and @Input
-  // rxNgProps do nothing to "this" but only for types guard
+  // rxNgProps do nothing to "this", only for types guard
   // MUST explicitly giving props to observe
   @RxNgProps props = rxNgProps(this, ['name', 'name2']);
 
   // all @RxNgProp MUST declare after @RxNgProps
-  // with @RxNgProp new incoming value will push into mapping observable
+  // with @RxNgProp new incoming value will push into same name property in @RxNgProps object
   @RxNgProp @Input() name!: string;
 
-  // fine for put @RxNgProp after @Input
-  // if @Input is optional, give default value to make first emit value
+  // fine to put @RxNgProp after @Input
+  // if @Input property is optional, give default value inorder to emit first value
   @Input() @RxNgProp name = 'default name';
 
   constructor() {
