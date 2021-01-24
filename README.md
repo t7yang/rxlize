@@ -20,7 +20,7 @@ Install Rxlize then import and don't forget to install peer dependency(ies).
 
 ### In browser
 
-Make sure to load `rxjs` global before loading `rxlize.min.js`.
+Make sure to load `rxjs` globally before loading `rxlize.min.js`.
 
 ## List of function
 
@@ -35,8 +35,13 @@ Make sure to load `rxjs` global before loading `rxlize.min.js`.
   - `rxNext` -- Special case of `rxAsync` which provide a default `Subject`.
 
 - Angular
-  - `rxNgLifecycle` - Transform Angular component lifecycle event to observable stream.
+  - `rxNgHooks` - Transform Angular component lifecycle event to observable stream.
+  - `@RxNgProps`, `@RxNgProp`, `rxNgProps` - Mark `@Input` properties and transform into a collection of observables.
 
 ## Cautions
 
 This is a preview version, functions in this library not yet cover by test and signature may change from time to time, so take your own risk to use.
+
+### Angular
+
+- `@angular/cli` may generate warning message about `CommonJS or AMD dependencies can cause optimization bailouts.` on building, This because `@babel/runtime-corejs3` export only with CommonJS module.
