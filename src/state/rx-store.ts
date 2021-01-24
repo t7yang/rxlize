@@ -10,18 +10,15 @@ export function rxStore<S, D extends Dispatcher<S, D>>(
   opt: Required<RxlInit<S>>,
 ): { store$: Observable<RxlAsyncState<S>>; dispatch: Dispatch<S, D>; start: VoidFn<[]>; reset: VoidFn<[]> } {
   let isInitial = false;
-
   const store$ = new BehaviorSubject({ isLoading: false, error: null, data: opt.init });
+  const dispatch = {} as Dispatch<S, D>;
 
-  const dispatch = Object.fromEntries(
-    Object.entries<any>(dispatcher).map(([key, fn]) => [
-      key,
-      (...a: any[]) => {
-        store$.next({ isLoading: false, error: null, data: fn(store$.value.data)(...a) });
-        return store$.value.data;
-      },
-    ]),
-  ) as { [P in keyof D]: ReturnType<D[P]> };
+  for (const key in dispatcher) {
+    if (dispatcher.hasOwnProperty(key)) {
+      dispatch[key] = (...a: any[]) =>
+        void store$.next({ isLoading: false, error: null, data: dispatcher[key](store$.value.data)(...a) });
+    }
+  }
 
   const reset = () => {
     store$.next({ ...store$.value, isLoading: true });
@@ -31,12 +28,7 @@ export function rxStore<S, D extends Dispatcher<S, D>>(
     });
   };
 
-  const start = () => {
-    if (!isInitial) {
-      isInitial = true;
-      reset();
-    }
-  };
+  const start = () => !isInitial && ((isInitial = true), reset());
 
   return { store$: store$.asObservable(), dispatch, start, reset };
 }
