@@ -2,6 +2,23 @@
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [0.2.0] - 2021-01-24
+
+### Added
+
+- Add `RxNgProps`, `RxNgProp`, `rxNgProps` decorator and function to collect `@Input` props to observable.
+- Add document for Angular section.
+
+### Changed
+
+- All `RxNgLifeCycle`\* prefix change to `RxNgHook`.
+- Replace `Object` methods with `for` to reduce bundle size in `rxStore`.
+
+### Fixed
+
+- Add `share` to source in `rxAsync` to prevent multiple subscribe to `ObservableInput`.
+- Correct `Dispatch` types in `rxStore`.
+
 ## [0.1.1] - 2021-01-18
 
 ### Changed
