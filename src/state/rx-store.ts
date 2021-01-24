@@ -2,7 +2,7 @@ import { BehaviorSubject, from, Observable } from 'rxjs';
 import { RxlAsyncState, RxlFactory, RxlInit, VoidFn } from '../types';
 
 type Dispatcher<S, R> = { [P in keyof R]: (s: S) => (...a: any[]) => S };
-type Dispatch<S, D extends Dispatcher<S, D>> = { [P in keyof D]: ReturnType<D[P]> };
+type Dispatch<S, D extends Dispatcher<S, D>> = { [P in keyof D]: VoidFn<Parameters<ReturnType<D[P]>>> };
 
 export function rxStore<S, D extends Dispatcher<S, D>>(
   factory: RxlFactory<[], S>,
