@@ -1,7 +1,7 @@
 import { merge, Observable, OperatorFunction, Subject } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+import { genLoadingState, handleUpdate } from '../internal';
 import { RxlAsyncState, RxlCache, RxlInit, RxlSource } from '../types';
-import { genLoadingState, handleUpdate } from '../util';
 
 export function rxNext<S, R, T extends Subject<S> = Subject<S>>(
   operator: OperatorFunction<S, R>,
