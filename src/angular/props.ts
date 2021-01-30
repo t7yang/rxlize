@@ -38,26 +38,30 @@ export function RxNgProp(opt: RxNgPropOpt = {}): PropertyDecorator {
 
 /**
  * Decorator for a property that collect all `@Input` properties as observable.
+ *
  * `@RxNgProps` decorate property should alway declare before `@RxNgProp`.
- * `@RxNgProps` should alway decorate to only a property in a component,
+ *
+ * `@RxNgProps` should alway decorate to only a property in a component, *
  * if decorate more that one property, then the last one is the only working one.
  */
-export const RxNgProps: PropertyDecorator = function (target, key) {
-  Reflect.defineMetadata(RxMetadataKey, key, target);
-};
+export function RxNgProps(): PropertyDecorator {
+  return function (target, key) {
+    Reflect.defineMetadata(RxMetadataKey, key, target);
+  };
+}
 
 /**
- * Generate a object which a collection of properties that turn into observable by `@RxNgProp` decorator.
+ * Create a object which a collection of properties that turn into observable by `@RxNgProp` decorator.
  * @param _ `this` which the component instance itself, do nothing by only for typings.
  * @param propsKeys Give the properties name which decorate by `@RxNgProp`.
  */
-export const rxNgProps = function <T, P extends keyof T>(
+export const createRxNgProps = function <T, P extends keyof T>(
   _: T,
-  propsKeys: ReadonlyArray<P>,
+  keys: ReadonlyArray<P>,
 ): Readonly<{ [K in P]: ReplaySubject<T[K]> }> {
   const props = {} as any;
 
-  for (const key of propsKeys) {
+  for (const key of keys) {
     if (!props[key]) {
       props[key] = new ReplaySubject();
     }
