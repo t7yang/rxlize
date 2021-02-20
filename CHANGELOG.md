@@ -2,6 +2,18 @@
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [0.3.0] - 2021-02-20
+
+### Added
+
+- Add `filter` option to `RxNgProp` decorator.
+- Add `nonNullable` filter function.
+
+### Changed
+
+- All decorators from angular/props need to call on decorating now.
+- `rxNgProps` rename to `createRxNgProps` to increase semantic.
+
 ## [0.2.0] - 2021-01-24
 
 ### Added
