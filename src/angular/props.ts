@@ -19,16 +19,16 @@ export interface RxNgPropOpt {
  */
 export function RxNgProp(opt: RxNgPropOpt = {}): PropertyDecorator {
   return function (target, key) {
-    let value: any;
+    const token = Symbol(`RxNgProp ${key as string}`);
 
     Object.defineProperty(target, key, {
       get() {
-        return value;
+        return this[token];
       },
       set(newValue: any) {
         if ((typeof opt.filter === 'function' ? opt.filter : alwayPass)(newValue)) {
           const propsKey: string = Reflect.getOwnMetadata(RxMetadataKey, target);
-          value = newValue;
+          this[token] = newValue;
           this?.[propsKey]?.[key]?.next(newValue);
         }
       },
