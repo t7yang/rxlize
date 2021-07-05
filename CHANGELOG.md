@@ -2,6 +2,12 @@
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [0.3.1] - 2021-07-05
+
+### Fixed
+
+- internal value of `RxNgProp` share between component
+
 ## [0.3.0] - 2021-02-20
 
 ### Added
