@@ -24,6 +24,7 @@
     "url": "https://github.com/t7yang/rxlize/issues"
   },
   "scripts": {
+    "prepare": "husky install",
     "update": "yarn upgrade-interactive",
     "lint": "eslint src/** --ext .ts --fix",
     "format": "prettier --write . --ignore-unknown",
@@ -32,19 +33,14 @@
     "build:type": "tsc --emitDeclarationOnly",
     "build": "yarn clear && rollup -c && yarn build:type"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "lint-staged": {
     "*.{ts}": [
       "yarn lint",
-      "git add"
+      "git add ."
     ],
     "*": [
       "yarn format",
-      "git add"
+      "git add ."
     ]
   },
   "files": [
