@@ -19,16 +19,18 @@ export interface RxNgPropOpt {
  */
 export function RxNgProp(opt: RxNgPropOpt = {}): PropertyDecorator {
   return function (target, key) {
-    let value: any;
+    const INNER_KEY = Math.random().toString(16).slice(2);
+
+    Object.defineProperty(target, INNER_KEY, { enumerable: false, writable: true, configurable: false });
 
     Object.defineProperty(target, key, {
       get() {
-        return value;
+        return (target as any)[INNER_KEY];
       },
       set(newValue: any) {
         if ((typeof opt.filter === 'function' ? opt.filter : alwayPass)(newValue)) {
           const propsKey: string = Reflect.getOwnMetadata(RxMetadataKey, target);
-          value = newValue;
+          (target as any)[INNER_KEY] = newValue;
           this?.[propsKey]?.[key]?.next(newValue);
         }
       },
