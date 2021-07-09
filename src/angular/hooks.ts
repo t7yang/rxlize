@@ -28,6 +28,14 @@ type NgHooks = NgHooksWithoutParams | NgHooksWithParams;
 type NgHooksObservable = Record<NgHooksWithoutParams, Observable<void>> &
   Record<NgHooksWithParams, Observable<SimpleChanges>>;
 
+/**
+ * @deprecated PELEASE DO NOT USE THIS FUNCTION ANYMORE, HUGE BUG!!! Use `RxNgHooks` and `createRxNgHooks` instead.
+ * @see {@link RxNgHooks}
+ * @see {@link createRxNgHooks}
+ * @param comp Component instance
+ * @param hooks Array of Angular lifecycle method name
+ * @returns A object of Angular lifecycle and its observable
+ */
 export const rxNgHooks = <T extends NgHooks>(
   comp: InstanceType<Type<any>>,
   ...hooks: T[]
