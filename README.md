@@ -38,7 +38,9 @@ Make sure to load `rxjs` globally before loading `rxlize.min.js`.
   - Lifecycle hooks
     - `RxNgHooks` - Decorate on a component property which is component lifecycle observable object.
     - `createRxNgHooks` - Create a component lifecycle observable object.
-  - `@RxNgProps`, `@RxNgProp`, `rxNgProps` - Mark `@Input` properties and transform into a collection of observables.
+  - Input Property
+    - `@RxNgInput` - Decorate on a component property which is component `@Input` properties observable object.
+    - `createRxNgInput` - Helper function to create RxInput observable object.
 
 ## Cautions
 

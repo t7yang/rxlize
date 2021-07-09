@@ -8,17 +8,13 @@ The Angular component properties is decorate by `@Input` decorator which is a pl
 - Passing prop with `async` pipe may cause emit null as first value.
 - Enabled `strictTemplate` may cause developer suffer for fixing types.
 
-Rxlize provides two decorators and a function to work with this:
+Rxlize provides a decorators and a function to work with this:
 
-- `@RxNgProp()`:
-  - Decorate to those properties with `@Input()`, the new incoming value will push to corresponding property in props.
-  - All `@RxNgProp()` MUST declare after `@RxNgProps()` property.
-- `@RxNgProps()`:
-  - Decorate to ONLY to a property of component, explicitly give properties key decorate by `@RxNgProp()` to observe.
-  - Return a object of observables with given properties key.
-  - MUST `@RxNgProps()` property declare before all `@RxNgProp()` properties.
-- `createRxNgProps`
-  - A factory function to generate observing keys to a object of observables (`ReplaySubject`).
+- `@RxNgInput()`:
+  - Decorate a property of component, explicitly give properties name decorate by `@Input()` to observe.
+  - Return a object of observables with given properties name.
+- `createRxNgInput`
+  - A factory function to generate observing properties to a object of observables (`ReplaySubject`).
 
 ### Example
 
@@ -46,28 +42,29 @@ export class ParentComponent implement OnInit {
 
 ```ts
 // ... imports
-import { RxNgProp, createRxNgProps, RxNgProps } from 'rxlize';
+import { createRxNgInput, RxNgInput } from 'rxlize';
 
 @Component({...})
 export class CardComponent {
-  // the `props` property decorate by @RxNgProps MUST declare before all @RxNgProp and @Input
-  // createRxNgProps do nothing to "this", only for types guard
+  @Input() name!: string;
+  @Input() name2 = 'default name2';
+  @Input() name3 = 'default name3';
+  @Input() name4 = 'default name4';
+
+  @RxNgInput({
+    // filter can help you omit value invalid, for example null from async pipe
+    filter: (prop, change) => {
+      switch (prop) {
+        case 'name4':
+          return change.currentValue != null;
+        default:
+          return true;
+      }
+    },
+  })
+  // createRxNgInput do nothing to `this`, only for types guard
   // MUST explicitly giving props to observe
-  @RxNgProps() props = createRxNgProps(this, ['name', 'name2', 'name3', 'name4']);
-
-  // all @RxNgProp MUST declare after @RxNgProps
-  // with @RxNgProp new incoming value will push into same name property in @RxNgProps object
-  @RxNgProp() @Input() name!: string;
-
-  // fine to put @RxNgProp after @Input
-  // if @Input property is optional, give default value inorder to emit first value
-  @Input() @RxNgProp() name2 = 'default name2';
-
-  @Input() @RxNgProp() name3 = 'default name3';
-
-  // filter can make sure no unexpected value at runtime
-  // rxlize provide nonNullable filter function which can import directly to use
-  @Input() @RxNgProp({ filter: value => value != null }) name4 = 'default name4';
+  props = createRxNgInput(this, ['name', 'name2', 'name3', 'name4']);
 
   constructor() {
     this.props.name.subscribe(value => console.log('this.name = ', value));
@@ -75,17 +72,15 @@ export class CardComponent {
     // this.name = name: 2nd emit (2s later)
 
     this.props.name2.subscribe(value => console.log('this.name2 = ', value));
-    // this.name2 = default name2
+    // nothing emit here
 
     // due to async pipe default value for internal `_latestValue` is null
     this.props.name3.subscribe(value => console.log('this.name3 = ', value));
-    // this.name3 = default name3
-    // this.name3 = null (after component init)
+    // this.name3 = null (after component init, this null produce by async pipe)
     // this.name3 = name$: 1st emit (2s later)
 
     // by using filter, null is skip from the emit values
     this.props.name4.subscribe(value => console.log('this.name4 = ', value));
-    // this.name4 = default name4
     // this.name4 = name$: 1st emit (2s later)
   }
 }
