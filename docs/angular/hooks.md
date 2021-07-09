@@ -7,13 +7,16 @@ Below show how rxlize help developer to turn component hooks into observable.
 ### Example
 
 ```ts
+const hooks = ngHooks(['ngOnChanges', 'ngOnDestroy']);
+
 @Component({...})
 export class FooComponent {
-  readonly rxHooks = rxNgHooks(this, 'ngOnChanges', 'ngOnDestroy');
+  @RxNgHooks(hooks)
+  rxHooks = createRxNgHooks(hooks);
 
-  readonly userIdCtrl = new FormControl(1);
+  userIdCtrl = new FormControl(1);
 
-  constructor(private readonly router: Router) {
+  constructor(private router: Router) {
     // for those who unable to handle unsubscribe with async pipe in template
     // don't need to declare OnDestory hooks and Subject everytime by ourself
     this.userIdCtrl.valueChanges

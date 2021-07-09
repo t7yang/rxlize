@@ -35,7 +35,9 @@ Make sure to load `rxjs` globally before loading `rxlize.min.js`.
   - `rxNext` -- Special case of `rxAsync` which provide a default `Subject`.
 
 - Angular
-  - `rxNgHooks` - Transform Angular component lifecycle event to observable stream.
+  - Lifecycle hooks
+    - `RxNgHooks` - Decorate on a component property which is component lifecycle observable object.
+    - `createRxNgHooks` - Create a component lifecycle observable object.
   - `@RxNgProps`, `@RxNgProp`, `rxNgProps` - Mark `@Input` properties and transform into a collection of observables.
 
 ## Cautions
