@@ -2,6 +2,18 @@
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [0.4.0] - 2021-07-10
+
+### Deprecated
+
+- mark deprecated for `rxNgHooks` due bad design.
+- mark deprecated for `RxNgProps`, `RxNgProp`, and `RxNgPropOpt` due bad design.
+
+### Added
+
+- provide `RxNgHooks` and `createRxNgHooks` with better design.
+- provide `RxNgInput` and `createRxNgInput` with better design.
+
 ## [0.3.1] - 2021-07-05
 
 ### Fixed
