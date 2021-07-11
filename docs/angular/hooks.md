@@ -12,7 +12,7 @@ const hooks = ngHooks(['ngOnChanges', 'ngOnDestroy']);
 @Component({...})
 export class FooComponent {
   @RxNgHooks(hooks)
-  rxHooks = createRxNgHooks(hooks);
+  rxNgHooks = createRxNgHooks(hooks);
 
   userIdCtrl = new FormControl(1);
 
