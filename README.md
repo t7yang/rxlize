@@ -42,6 +42,10 @@ Make sure to load `rxjs` globally before loading `rxlize.min.js`.
     - `@RxNgInput` - Decorate on a component property which is component `@Input` properties observable object.
     - `createRxNgInput` - Helper function to create RxInput observable object.
 
+## Docs
+
+You can view detail about above functions or decorators under `docs/` directory.
+
 ## Cautions
 
 This is a preview version, functions in this library not yet cover by test and signature may change from time to time, so take your own risk to use.
