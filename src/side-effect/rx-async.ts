@@ -1,5 +1,5 @@
 import { from, merge, Observable, ObservableInput, OperatorFunction, Subject } from 'rxjs';
-import { map, share, startWith } from 'rxjs/operators';
+import { map, shareReplay, startWith } from 'rxjs/operators';
 import { genErrorSubject, genLoadingState, handleUpdate } from '../internal';
 import { RxlAsyncState, RxlCache, RxlInit } from '../types';
 
@@ -9,7 +9,7 @@ export function rxAsync<S, R>(
   opt: RxlInit<R> = {},
 ): { state$: Observable<RxlAsyncState<R | undefined>>; error$: Subject<unknown> } {
   const cache: RxlCache<R> = { data: opt.init };
-  const source$ = from(source).pipe(share());
+  const source$ = from(source).pipe(shareReplay({ refCount: true }));
   const error$ = genErrorSubject();
 
   const state$ = merge(
