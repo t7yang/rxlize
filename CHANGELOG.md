@@ -2,6 +2,16 @@
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [0.5.0] - 2021-08-05
+
+### Deprecated
+
+- remove deprecated `rxNgHooks`, `RxNgProps`, `RxNgProp`, and `RxNgPropOpt`.
+
+### Fixed
+
+- fixed first value do not pass throught to operator in `rxAsync`.
+
 ## [0.4.0] - 2021-07-10
 
 ### Deprecated
