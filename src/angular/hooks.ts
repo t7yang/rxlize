@@ -1,3 +1,5 @@
+/// <reference path="../../node_modules/reflect-metadata/Reflect.d.ts" />
+
 import {
   AfterContentChecked,
   AfterContentInit,
@@ -8,7 +10,6 @@ import {
   OnDestroy,
   OnInit,
   SimpleChanges,
-  Type,
 } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 
@@ -27,35 +28,6 @@ type NgHooks = NgHooksWithoutParams | NgHooksWithParams;
 
 type NgHooksObservable = Record<NgHooksWithoutParams, Observable<void>> &
   Record<NgHooksWithParams, Observable<SimpleChanges>>;
-
-/**
- * @deprecated PELEASE DO NOT USE THIS FUNCTION ANYMORE, HUGE BUG!!! Use `RxNgHooks` and `createRxNgHooks` instead.
- * @see {@link RxNgHooks}
- * @see {@link createRxNgHooks}
- * @param comp Component instance
- * @param hooks Array of Angular lifecycle method name
- * @returns A object of Angular lifecycle and its observable
- */
-export const rxNgHooks = <T extends NgHooks>(
-  comp: InstanceType<Type<any>>,
-  ...hooks: T[]
-): Readonly<Pick<NgHooksObservable, T>> => {
-  const HooksObs = {} as any;
-
-  for (const hook of hooks) {
-    if (!HooksObs[hook]) {
-      const origHook = comp.constructor.prototype[hook];
-
-      HooksObs[hook] = new Subject<unknown>();
-      comp.constructor.prototype[hook] = function (...args: any[]) {
-        origHook?.(...args);
-        HooksObs[hook].next(...args);
-      };
-    }
-  }
-
-  return Object.freeze(HooksObs);
-};
 
 const HAS_RX_HOOKS_INIT_KEY = 'ffbe4a65-1ff6-4f47-970a-d4b2424c98f7';
 
